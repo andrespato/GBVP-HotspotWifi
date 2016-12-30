@@ -19,7 +19,7 @@ $random_hash = substr(md5(uniqid(rand(), true)), 5, 5);
 $data = explode("-",$_POST["postdata"]);
 $numTelem = $data[1];
 $rowID = $data[0];
-$address = $numTelem."@smsavp.bit.local";
+$address = $numTelem."@smsbvp.bit.local";
 
 $sql = "UPDATE bit_wifi_lofin.visitantes SET ativo=0, hash_code='".$random_hash."',telem='".$numTelem."', try=0
         WHERE id =".$rowID.";";
@@ -41,10 +41,10 @@ $mail->SMTPOptions = array(
 
 
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smsavp.bit.local';  					// Specify main and backup SMTP servers
+$mail->Host = 'smsbvp.bit.local';  					// Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'smsavp@bit.local';                 // SMTP username
-$mail->Password = 'smsAVP';                           // SMTP password
+$mail->Username = 'smsbvp@bit.local';                 // SMTP username
+$mail->Password = 'smsBVP';                           // SMTP password
 //$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 25;                                    // TCP port to connect to
 $mail->SMTPAuth = false;
@@ -59,8 +59,8 @@ $mail->addAddress($address, 'Visitante');     // Add a recipient
 // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = 'GBVP - Wifi Grátis';
-$mail->Body    ="<h1> GBVP - Wifi Grátis ! Código de Confirmação :</h1> <b>".$random_hash."</b>";
+$mail->Subject = 'GBVP - Hotspot Wifi';
+$mail->Body    ="<h1> GBVP - Hotspot Wifi ! Código de Confirmação :</h1> <b>".$random_hash."</b>";
 
 if(!$mail->send()) {
     echo 'Message could not be sent.';
